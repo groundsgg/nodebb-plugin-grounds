@@ -1,7 +1,7 @@
 {
   "name": "nodebb-plugin-grounds",
-  "version": "1.0.0",
-  "description": "Grounds forum board index for NodeBB's Harmony theme: one boxed section per top-level category.",
+  "version": "1.1.0",
+  "description": "Grounds forum for NodeBB's Harmony theme: board index in sections, topic posts with an author column.",
   "main": "library.js",
   "repository": {
     "type": "git",

@@ -48,3 +48,10 @@ async function restoreSubcategories(boards, uid) {
 			.slice(0, board.subCategoriesPerPage);
 	});
 }
+
+// The topic's author column (templates/partials/topic/post.tpl) shows when
+// each author joined; NodeBB loads post authors without it.
+exports.addPostUserFields = async function (hookData) {
+	hookData.fields.push('joindate');
+	return hookData;
+};

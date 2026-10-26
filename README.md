@@ -1,16 +1,22 @@
 # nodebb-plugin-grounds
 
-The board index of [forum.grounds.gg](https://forum.grounds.gg) for NodeBB 4 with the Harmony theme.
+The board index and topic posts of [forum.grounds.gg](https://forum.grounds.gg) for NodeBB 4 with the Harmony theme.
 
 Every top-level category becomes a boxed section: its name (and description) is the title bar, its child categories are the board rows inside, each with icon, title, description, links to its own subcategories, topic and post counts and the last post. Top-level categories without children are rows themselves; consecutive ones share one box without a title bar.
 
 Structure categories in the ACP accordingly: top-level categories are headings (mark them "section" if they should hold no topics of their own), boards are their children, and a third level shows up as links under the board.
 
+On a topic, every post is a box with an author column on the left (avatar, rank badge, name, post count, reputation, joined) and the post on the right: a header line with the time, the edited marker and the `#n` permalink, the body, and a footer with reply, quote, votes and the post menu. The quick reply uses the same box.
+
 ## What it overrides
 
 - `templates/categories.tpl` — Harmony's index page, rendered from `sections` instead of `categories`. Rows still use Harmony's `partials/categories/item.tpl`; the widget areas, paginator and `component=` attributes are unchanged.
 - `templates/partials/categories/lastpost.tpl` — the last post column shows the topic title, the author and the time instead of a post excerpt. Harmony uses this partial for subcategory rows on category pages too.
+- `templates/partials/topic/post.tpl` — Harmony's post, rearranged into the author column and the post column; every `component=` attribute, `data-*` and widget area of Harmony's partial is kept, so post tools, quoting, replying, votes, editing, replies and the navigator work unchanged. Also renders posts added live and replies opened under a post.
+- `templates/partials/topic/quickreply.tpl` — the quick reply in the same box, with the reader's avatar as author column. Harmony also shows it on `/world`.
+- `templates/partials/topic/stats.tpl` — the topic's posts, posters, views and watchers as one line of text instead of badges.
 - `filter:categories.build` (`library.js`) — groups the tree into `sections`, loads the boards' own subcategories back (NodeBB trims them on the index) and gives boards a teaser like top-level categories get.
+- `filter:posts.addUserFields` (`library.js`) — loads post authors' `joindate` for the author column.
 
 The styling lives in the forum's custom CSS, not here.
 
