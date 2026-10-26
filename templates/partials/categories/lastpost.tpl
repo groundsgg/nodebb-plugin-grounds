@@ -7,7 +7,6 @@
 			<a class="lastpost-topic text-reset fw-semibold text-truncate" href="{config.relative_path}/topic/{./topic.slug}{{{ if ./index }}}/{./index}{{{ end }}}" title="{./topic.title}">{./topic.title}</a>
 			<div class="lastpost-meta text-muted text-truncate">
 				<a class="lastpost-author text-reset" href="{config.relative_path}/user/{./user.userslug}">{{txDisplayname(./user)}}</a>
-				<span aria-hidden="true">&middot;</span>
 				<a class="permalink text-muted timeago" href="{config.relative_path}/topic/{./topic.slug}{{{ if ./index }}}/{./index}{{{ end }}}" title="{./timestampISO}" aria-label="{{tx("global:lastpost")}}"></a>
 			</div>
 		</div>
