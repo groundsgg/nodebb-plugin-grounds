@@ -1,0 +1,11 @@
+{
+  "id": "nodebb-plugin-grounds",
+  "name": "Grounds",
+  "description": "Board index in sections: one box per top-level category, its children as board rows.",
+  "url": "https://github.com/groundsgg/nodebb-plugin-grounds",
+  "library": "./library.js",
+  "templates": "templates",
+  "hooks": [
+    { "hook": "filter:categories.build", "method": "buildIndex" }
+  ]
+}

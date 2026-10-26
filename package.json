@@ -1,0 +1,19 @@
+{
+  "name": "nodebb-plugin-grounds",
+  "version": "1.0.0",
+  "description": "Grounds forum board index for NodeBB's Harmony theme: one boxed section per top-level category.",
+  "main": "library.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/groundsgg/nodebb-plugin-grounds.git"
+  },
+  "keywords": [
+    "nodebb",
+    "plugin",
+    "harmony"
+  ],
+  "license": "MIT",
+  "nbbpm": {
+    "compatibility": "^4.0.0"
+  }
+}
