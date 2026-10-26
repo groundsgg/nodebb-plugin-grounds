@@ -5,10 +5,23 @@
   "url": "https://github.com/groundsgg/nodebb-plugin-grounds",
   "library": "./library.js",
   "templates": "templates",
-  "scripts": ["public/grounds.js"],
+  "scripts": [
+    "public/grounds.js"
+  ],
   "hooks": [
-    { "hook": "filter:categories.build", "method": "buildIndex" },
-    { "hook": "filter:posts.addUserFields", "method": "addPostUserFields" },
-    { "hook": "filter:middleware.renderHeader", "method": "addHeaderUser" }
-  ]
+    {
+      "hook": "filter:categories.build",
+      "method": "buildIndex"
+    },
+    {
+      "hook": "filter:posts.addUserFields",
+      "method": "addPostUserFields"
+    },
+    {
+      "hook": "filter:middleware.renderHeader",
+      "method": "addHeaderUser"
+    }
+  ],
+  "languages": "languages",
+  "defaultLang": "en-GB"
 }

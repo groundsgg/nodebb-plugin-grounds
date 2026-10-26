@@ -47,6 +47,6 @@
 			<!-- IMPORT partials/grounds/forum-nav.tpl -->
 		</ul>
 	</div>
-	<a class="grounds-sign-in btn btn-sm" href="{relative_path}/login">{{tx("global:login")}}</a>
+	<a class="grounds-sign-in btn btn-sm" href="{relative_path}/login">{{tx("grounds:sign-in")}}</a>
 	{{{ end }}}
 </div>
