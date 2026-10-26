@@ -1,12 +1,14 @@
 {
   "id": "nodebb-plugin-grounds",
   "name": "Grounds",
-  "description": "Board index in sections, one box per top-level category; topic posts as boxes with an author column.",
+  "description": "Board index in sections, topic posts with an author column, and the Grounds bar with the user menu in place of Harmony's sidebars.",
   "url": "https://github.com/groundsgg/nodebb-plugin-grounds",
   "library": "./library.js",
   "templates": "templates",
+  "scripts": ["public/grounds.js"],
   "hooks": [
     { "hook": "filter:categories.build", "method": "buildIndex" },
-    { "hook": "filter:posts.addUserFields", "method": "addPostUserFields" }
+    { "hook": "filter:posts.addUserFields", "method": "addPostUserFields" },
+    { "hook": "filter:middleware.renderHeader", "method": "addHeaderUser" }
   ]
 }

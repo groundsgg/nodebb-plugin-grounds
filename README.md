@@ -1,6 +1,6 @@
 # nodebb-plugin-grounds
 
-The board index and topic posts of [forum.grounds.gg](https://forum.grounds.gg) for NodeBB 4 with the Harmony theme.
+The board index, topic posts and top bar of [forum.grounds.gg](https://forum.grounds.gg) for NodeBB 4 with the Harmony theme.
 
 Every top-level category becomes a boxed section: its name (and description) is the title bar, its child categories are the board rows inside, each with icon, title, description, links to its own subcategories, topic and post counts and the last post. Top-level categories without children are rows themselves; consecutive ones share one box without a title bar.
 
@@ -15,6 +15,10 @@ On a topic, every post is a box with an author column on the left (avatar, rank 
 - `templates/partials/topic/post.tpl` — Harmony's post, rearranged into the author column and the post column; every `component=` attribute, `data-*` and widget area of Harmony's partial is kept, so post tools, quoting, replying, votes, editing, replies and the navigator work unchanged. Also renders posts added live and replies opened under a post.
 - `templates/partials/topic/quickreply.tpl` — the quick reply in the same box, with the reader's avatar as author column. Harmony also shows it on `/world`.
 - `templates/partials/topic/stats.tpl` — the topic's posts, posters, views and watchers as one line of text instead of badges.
+- `templates/partials/header/brand.tpl` — the Grounds bar instead of Harmony's brand header: the `brand-header` widget area (the forum puts its logo and hub links there), then from 992px wide search, new topic, drafts (only while there are some), notifications and the user menu (`partials/grounds/`). Search, notifications and drafts keep Harmony's `component=` hooks, so quick search, the live notification count and the drafts list work unchanged. Guests get the forum navigation behind a menu button and a login link.
+- `templates/partials/sidebar/user-menu.tpl` — the user menu: avatar, rank badge and name as the button; profile, edit profile, settings, notifications, moderator links, the forum navigation (Harmony's left sidebar, with its unread counts) and logout. Harmony's bottom bar uses it on phones too.
+- `templates/partials/sidebar-left.tpl`, `templates/partials/sidebar-right.tpl` — empty: their contents are in the bar, so the content takes the full width. Below 992px Harmony's bottom bar stays as it is.
+- `filter:middleware.renderHeader` (`library.js`) — the reader's rank badge (their selected group, loaded as for posts) and whether they may start a topic in any category, for the bar; `public/grounds.js` opens the composer from the new-topic button.
 - `filter:categories.build` (`library.js`) — groups the tree into `sections`, loads the boards' own subcategories back (NodeBB trims them on the index) and gives boards a teaser like top-level categories get.
 - `filter:posts.addUserFields` (`library.js`) — loads post authors' `joindate` for the author column.
 

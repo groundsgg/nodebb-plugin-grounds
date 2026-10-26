@@ -1,6 +1,7 @@
 'use strict';
 
 const categories = require.main.require('./src/categories');
+const posts = require.main.require('./src/posts');
 const privileges = require.main.require('./src/privileges');
 const helpers = require.main.require('./src/controllers/helpers');
 
@@ -53,5 +54,23 @@ async function restoreSubcategories(boards, uid) {
 // each author joined; NodeBB loads post authors without it.
 exports.addPostUserFields = async function (hookData) {
 	hookData.fields.push('joindate');
+	return hookData;
+};
+
+// The Grounds bar (templates/partials/grounds/): the reader's rank badge beside
+// their name, loaded the way posts load their authors' badges, and whether
+// they may start a topic anywhere, which shows the new-topic button. Full page
+// loads only; ajaxify keeps the bar.
+exports.addHeaderUser = async function (hookData) {
+	const uid = hookData.req.uid;
+	if (uid <= 0) {
+		return hookData;
+	}
+	const [[userInfo], postable] = await Promise.all([
+		posts.getUserInfoForPosts([uid], uid),
+		categories.getAllCidsFromSet('categories:cid').then(cids => privileges.categories.filterCids('topics:create', cids, uid)),
+	]);
+	hookData.templateData.user.selectedGroups = userInfo.selectedGroups;
+	hookData.templateData.groundsCanPost = postable.length > 0;
 	return hookData;
 };

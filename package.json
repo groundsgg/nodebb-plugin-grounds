@@ -1,7 +1,7 @@
 {
   "name": "nodebb-plugin-grounds",
-  "version": "1.1.0",
-  "description": "Grounds forum for NodeBB's Harmony theme: board index in sections, topic posts with an author column.",
+  "version": "1.2.0",
+  "description": "Grounds forum for NodeBB's Harmony theme: board index in sections, topic posts with an author column, the Grounds bar with a user menu instead of the sidebars.",
   "main": "library.js",
   "repository": {
     "type": "git",
